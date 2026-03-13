@@ -1,6 +1,6 @@
 {
   "name": "taskgen",
-  "version": "1.0.0",
+  "version": "0.0.0",
   "description": "AI-powered task creator via CLI",
   "type": "module",
   "bin": {
@@ -19,8 +19,7 @@
     "lint:fix": "eslint src --fix",
     "format": "prettier --write src",
     "format:check": "prettier --check src",
-    "prepublishOnly": "npm run lint && npm run build:min",
-    "prepare": "husky"
+    "prepublishOnly": "npm run lint && npm run build:min"
   },
   "lint-staged": {
     "src/**/*.ts": [
