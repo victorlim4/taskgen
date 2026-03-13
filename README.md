@@ -1,8 +1,8 @@
-# taskgen
+# TaskGen
 
-AI-powered task creator for Linear, via CLI.
+AI-powered task creator via CLI.
 
-Describe what needs to be done → AI generates title + description → task is created in Linear.
+Describe what needs to be done → AI generates title + description → task is created automatically
 
 ---
 
@@ -21,7 +21,7 @@ npm install
 taskgen setup
 ```
 You'll be prompted for:
-- AI provider (Anthropic or OpenAI) + API key
+- AI provider (Anthropic, OpenAI or Gemini) + API key
 - Linear API key (optional) + team selection
 
 **2. Create a task:**

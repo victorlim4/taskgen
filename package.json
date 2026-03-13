@@ -1,10 +1,10 @@
 {
   "name": "taskgen",
   "version": "1.0.0",
-  "description": "AI-powered task creator for Linear via CLI",
+  "description": "AI-powered task creator via CLI",
   "type": "module",
   "bin": {
-    "taskgen": "./dist/cli.js"
+    "taskgen": "./dist/main.js"
   },
   "files": [
     "dist"
@@ -15,9 +15,9 @@
   "scripts": {
     "build": "tsc",
     "prepublishOnly": "npm run build",
-    "dev": "tsx src/cli.ts",
-    "setup": "tsx src/cli.ts setup",
-    "create": "tsx src/cli.ts create-task"
+    "dev": "tsx src/main.ts",
+    "setup": "tsx src/main.ts setup",
+    "create-task": "tsx src/main.ts create-task"
   },
   "dependencies": {
     "@inquirer/prompts": "^7.2.0",
