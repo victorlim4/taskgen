@@ -51,7 +51,6 @@ export async function runSetup() {
         default: !!config.linearApiKey,
     });
     let linearApiKey;
-    let linearTeamId;
     if (useLinear) {
         linearApiKey = await input({
             message: "Enter your Linear API key:",
@@ -63,7 +62,7 @@ export async function runSetup() {
         aiProvider: aiProvider,
         aiApiKey: aiApiKey.trim(),
         ...(aiModel ? { aiModel } : {}),
-        ...(useLinear && linearApiKey ? { linearApiKey: linearApiKey.trim(), linearTeamId } : {}),
+        ...(useLinear && linearApiKey ? { linearApiKey: linearApiKey.trim() } : {}),
     });
     console.log(chalk.green("\n✅ Config saved to ~/.taskgen/config.json\n"));
 }

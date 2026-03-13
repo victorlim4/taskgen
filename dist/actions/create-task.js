@@ -94,7 +94,9 @@ export async function runCreateTask() {
         try {
             linearTemplates = await client.getLinearTemplates(teamId);
         }
-        catch { }
+        catch {
+            linearTemplates = [];
+        }
     }
     const hasTemplates = localTemplates.length > 0 || linearTemplates.length > 0;
     if (hasTemplates) {
