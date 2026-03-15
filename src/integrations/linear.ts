@@ -29,6 +29,14 @@ export interface State {
     color: string;
 }
 
+export interface IssueDetail {
+    id: string;
+    identifier: string;
+    title: string;
+    teamId: string;
+    stateId: string;
+}
+
 export default class Linear {
     constructor(private config: Config) {
         if (!config.linearApiKey) {
@@ -132,5 +140,37 @@ export default class Linear {
             { teamId }
         );
         return data.team.states.nodes;
+    }
+
+    async getIssueByIdentifier(identifier: string): Promise<IssueDetail> {
+        const data = await this.query(
+            `query($identifier: String!) {
+          issue(id: $identifier) {
+            id identifier title
+            team { id }
+            state { id }
+          }
+        }`,
+            { identifier }
+        );
+
+        return {
+            id: data.issue.id,
+            identifier: data.issue.identifier,
+            title: data.issue.title,
+            teamId: data.issue.team.id,
+            stateId: data.issue.state.id,
+        };
+    }
+
+    async updateIssueStatus(issueId: string, stateId: string): Promise<void> {
+        await this.query(
+            `mutation UpdateIssue($issueId: String!, $stateId: String!) {
+          issueUpdate(id: $issueId, input: { stateId: $stateId }) {
+            success
+          }
+        }`,
+            { issueId, stateId }
+        );
     }
 }

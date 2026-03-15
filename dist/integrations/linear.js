@@ -78,4 +78,27 @@ export default class Linear {
       }`, { teamId });
         return data.team.states.nodes;
     }
+    async getIssueByIdentifier(identifier) {
+        const data = await this.query(`query($identifier: String!) {
+          issue(id: $identifier) {
+            id identifier title
+            team { id }
+            state { id }
+          }
+        }`, { identifier });
+        return {
+            id: data.issue.id,
+            identifier: data.issue.identifier,
+            title: data.issue.title,
+            teamId: data.issue.team.id,
+            stateId: data.issue.state.id,
+        };
+    }
+    async updateIssueStatus(issueId, stateId) {
+        await this.query(`mutation UpdateIssue($issueId: String!, $stateId: String!) {
+          issueUpdate(id: $issueId, input: { stateId: $stateId }) {
+            success
+          }
+        }`, { issueId, stateId });
+    }
 }
